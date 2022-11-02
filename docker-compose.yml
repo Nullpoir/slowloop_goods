@@ -3,7 +3,6 @@ version: "3.7"
 x-app: &api-app
   build:
     context: ./api
-  env_file: ./api/.env
   depends_on:
     - db
     - kvs
