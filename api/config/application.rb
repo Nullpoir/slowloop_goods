@@ -27,7 +27,7 @@ module App
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
     config.api_only = true
-    config.x.cors_allowed_origins = ENV.fetch('CORS_ALLOWED_ORIGINS', 'http://localhost:3000')
+    config.x.cors_allowed_origins = ENV.fetch('API_CORS_ALLOW_ORIGINS', 'http://localhost:3000')
     config.time_zone = 'Asia/Tokyo'
     config.active_record.default_timezone = :local
     config.autoload_paths += Dir["#{config.root}/decorators"]
