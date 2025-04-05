@@ -1,52 +1,25 @@
+// defalut import
 import * as React from 'react';
-import { styled } from '@mui/material/styles'
-import { AppBar, Card, Container, Box, CssBaseline, Button  } from '@mui/material';
+import { useRecoilState } from 'recoil'
 
-// styling
-const StyledCard = styled(Card)(({ theme }) => ({
-  margin: theme.spacing(1),
-  boxShadow: theme.shadows[3],
-  color: theme.palette.error.main,
-  minHeight: "250px",
-  flexBasis: "250px"
-  
-}))
+// componnet
+import AppHeader from 'src/components/header';
+import AppCard from 'src/components/card';
+import { Box, CssBaseline } from '@mui/material';
 
-const Header = styled(AppBar)(({ theme }) => ({
-  height: "50px",
-  position: "sticky"
-}))
+// recoil state
 
 // JSX
 const Home = (): JSX.Element => {
   return(
     <>
       <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: "100vh" }}>
-        <Header>
-          SlowLoop Goods
-        </Header>
+        <AppHeader />
         <CssBaseline/>
         <Box sx={{ display: 'flex', flexWrap: "wrap", minWidth: "100vw"}}>
-          <StyledCard>
-            グッズ名
-            <Button>
-              詳細
-            </Button>
-          </StyledCard>
-
-          <StyledCard>
-            グッズ
-            <Button>
-              詳細
-            </Button>
-          </StyledCard>
-
-          <StyledCard>
-            グッズ
-            <Button>
-              詳細
-            </Button>
-          </StyledCard>
+          <AppCard
+            name="グッズ"
+          />
         </Box>
       </Box>
     </>

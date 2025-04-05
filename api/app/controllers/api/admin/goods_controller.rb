@@ -1,9 +1,9 @@
-class Api::Admin::GoodsController < AdminController
+class Api::Admin::GoodsController < ApplicationController
   before_action :good, only: %i(show update destroy)
   before_action :init_good, only: %i(create)
 
   def index
-    render json: goods, each_serializer: GoodSerializer
+    render json: resources, each_serializer: GoodSerializer
   end
 
   def show
@@ -31,11 +31,8 @@ class Api::Admin::GoodsController < AdminController
     render json: @good, serializer: GoodSerializer
   end
 
-  def goods
-    @goods ||= Good.ransack(params[:q])
-                   .result 
-                   .order(order_by => direction)
-                   .limit(limit).offset(offset)
+  def resources_scope
+    Good.all
   end
 
   def init_good

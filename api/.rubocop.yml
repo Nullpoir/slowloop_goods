@@ -18,6 +18,7 @@ AllCops:
     - "config/initializers/**/*"
     - "Rakefile"
     - "spec/support/**/*"
+    - "spec/**/*"
     - "config/**/*"
     - "Gemfile"
 

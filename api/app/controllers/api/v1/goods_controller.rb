@@ -1,8 +1,8 @@
 class Api::V1::GoodsController < ApplicationController
   before_action :good, only: %i(show)
 
-  def index
-    render json: goods, each_serializer: GoodSerializer
+  def index 
+    render json: resources, each_serializer: GoodSerializer
   end
 
   def show
@@ -11,11 +11,8 @@ class Api::V1::GoodsController < ApplicationController
 
   private
 
-  def goods
-    @goods ||= Good.ransack(params[:q])
-                   .result 
-                   .order(order_by => direction)
-                   .limit(limit).offset(offset)
+  def resources_scope
+    Good.all
   end
 
   def good

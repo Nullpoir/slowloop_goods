@@ -3,7 +3,6 @@ version: "3.7"
 x-app: &api-app
   build:
     context: ./api
-  env_file: ./api/.env
   depends_on:
     - db
     - kvs
@@ -22,10 +21,9 @@ x-app: &api-app
     MINIO_ENDPOINT: ${MINIO_ENDPOINT}
     MAINTENANCE_MODE: ${MAINTENANCE_MODE}
   volumes:
-    - .:/api/app:cached
+    - ./api:/slowloop_goods/api:cached
     - gem-local:/usr/local/bundle
-    - /api/app/tmp
-    - ./tmp/letter_opener:/api/app/tmp/letter_opener
+    - ./tmp/letter_opener:/app/tmp/letter_opener
     - type: bind
       source: /run/host-services/ssh-auth.sock
       target: /run/host-services/ssh-auth.sock
@@ -38,6 +36,8 @@ services:
       POSTGRES_PASSWORD: password
     volumes:
       - db-local:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
   kvs:
     image: redis:6.0
     volumes:
