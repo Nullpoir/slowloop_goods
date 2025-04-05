@@ -11,7 +11,10 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2022_10_08_141602) do
-  create_table "good_users", charset: "utf8mb4", force: :cascade do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "good_users", force: :cascade do |t|
     t.bigint "good_id", comment: "グッズID"
     t.bigint "user_id", comment: "ユーザーID"
     t.datetime "purchased_at", comment: "購入日"
@@ -22,7 +25,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_08_141602) do
     t.index ["user_id"], name: "index_good_users_on_user_id"
   end
 
-  create_table "goods", charset: "utf8mb4", force: :cascade do |t|
+  create_table "goods", force: :cascade do |t|
     t.string "name", comment: "名称"
     t.string "description", comment: "説明"
     t.string "isbn", comment: "ISBN番号"
@@ -34,7 +37,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_08_141602) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "users", charset: "utf8mb4", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "provider", default: "email", null: false
     t.string "uid", default: "", null: false
     t.string "encrypted_password", default: "", null: false

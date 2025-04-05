@@ -21,10 +21,9 @@ x-app: &api-app
     MINIO_ENDPOINT: ${MINIO_ENDPOINT}
     MAINTENANCE_MODE: ${MAINTENANCE_MODE}
   volumes:
-    - .:/api/app:cached
+    - ./api:/slowloop_goods/api:cached
     - gem-local:/usr/local/bundle
-    - /api/app/tmp
-    - ./tmp/letter_opener:/api/app/tmp/letter_opener
+    - ./tmp/letter_opener:/app/tmp/letter_opener
     - type: bind
       source: /run/host-services/ssh-auth.sock
       target: /run/host-services/ssh-auth.sock

@@ -38,6 +38,8 @@ module App
     config.i18n.default_locale = :ja
     config.i18n.fallbacks = [I18n.default_locale]
 
+    config.reload_classes_only_on_change = true
+
     config.active_job.queue_adapter = :sidekiq
 
     config.autoload_paths += Dir["#{config.root}/lib"]

@@ -1,5 +1,3 @@
-module Admin
-  class ApplicationController < ::ApplicationController
-    before_action :authenticate_api_user!
-  end
+class Api::Admin::ApplicationController < ApplicationController
+  before_action :authenticate_api_user!
 end
