@@ -1,7 +1,7 @@
 class Api::V1::GoodsController < ApplicationController
   before_action :good, only: %i(show)
 
-  def index
+  def index 
     render json: resources, each_serializer: GoodSerializer
   end
 
