@@ -1,0 +1,39 @@
+name: rspec
+on: [pull_request]
+jobs:
+  rspec:
+    runs-on: ubuntu-latest
+    services:
+      db:
+        image: postgres:14.5
+        ports: ['5432:5432']
+        env:
+          POSTGRES_PASSWORD: password
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.1.2
+      - name: Build and run tests
+        env:
+          DB_HOST: localhost
+          DB_USER: postgres
+          DB_PASSWORD: password
+          RAILS_ENV: test
+          AWS_REGION: ap-northeast-1
+          AWS_ACCESS_KEY_ID: MINIO_ACCESS_KEY
+          AWS_SECRET_ACCESS_KEY: MINIO_SECRET_KEY
+          MINIO_ENDPOINT: http://127.0.0.1:9000/
+          AWS_BUCKET: devbucket
+        run: |
+          gem install bundler
+          bundle install --jobs 4 --retry 3
+          bundle exec rails db:migrate:reset
+          bundle exec rspec
+        working-directory: ./api

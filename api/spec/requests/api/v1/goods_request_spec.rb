@@ -27,8 +27,9 @@ RSpec.describe "Api::V1::Goods", type: :request do
 
         context 'ソートをする場合に' do
           it 'id descでソートできること' do
-            params[:order_by] = 'id'
-            params[:direction] = 'desc'
+            params[:q] = {
+                s: 'id desc'
+              }
 
             subject
   

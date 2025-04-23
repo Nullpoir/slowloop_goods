@@ -1,5 +1,5 @@
 module KeyTransformer
-  extend self
+  module_function
 
   def transform_snakecase!(obj)
     case obj
