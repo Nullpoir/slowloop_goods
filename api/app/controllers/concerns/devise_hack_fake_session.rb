@@ -6,8 +6,7 @@ module DeviseHackFakeSession
       false
     end
 
-    def destroy
-    end
+    def destroy; end
   end
 
   included do
@@ -16,9 +15,9 @@ module DeviseHackFakeSession
     private
 
     def set_fake_session
-      if Rails.configuration.respond_to?(:api_only) && Rails.configuration.api_only
-        request.env['rack.session'] ||= ::DeviseHackFakeSession::FakeSession.new
-      end
+      return unless Rails.configuration.respond_to?(:api_only) && Rails.configuration.api_only
+
+      request.env['rack.session'] ||= ::DeviseHackFakeSession::FakeSession.new
     end
   end
 end

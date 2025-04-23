@@ -23,6 +23,6 @@ class ApplicationController < ActionController::API
   end
 
   def render_success_destroy
-    render json: { success: true}, status: :ok
+    render json: { success: true }, status: :ok
   end
 end

@@ -8,17 +8,17 @@ module ApiPaginate
   end
 
   def pagination_columns
-    %i(order_type page per next_page prev_page)
+    %i[order_type page per next_page prev_page]
   end
 
   protected
 
   def resources
-    @resources ||= resources_scope.
-      ransack(params[:q]).
-      result.
-      page(page).
-      per(per)
+    @resources ||= resources_scope
+                   .ransack(params[:q])
+                   .result
+                   .page(page)
+                   .per(per)
   end
 
   def pagination
@@ -27,7 +27,7 @@ module ApiPaginate
       page: page.to_i,
       per: per.to_i,
       next_page: ActiveModel::Type::Boolean.new.cast(next_page),
-      prev_page: ActiveModel::Type::Boolean.new.cast(prev_page),
+      prev_page: ActiveModel::Type::Boolean.new.cast(prev_page)
     }
   end
 
@@ -60,7 +60,7 @@ module ApiPaginate
       :page,
       :per,
       :format,
-      :q,
+      :q
     )
   end
 end
