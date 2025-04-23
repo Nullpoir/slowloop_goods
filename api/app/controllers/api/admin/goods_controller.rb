@@ -1,4 +1,4 @@
-class Api::Admin::GoodsController < ApplicationController
+class Api::Admin::GoodsController < Api::Admin::ApplicationController
   before_action :good, only: %i(show update destroy)
   before_action :init_good, only: %i(create)
 
