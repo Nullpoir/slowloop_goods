@@ -27,8 +27,8 @@ jobs:
           DB_PASSWORD: password
           RAILS_ENV: test
           AWS_REGION: ap-northeast-1
-          AWS_ACCESS_KEY_ID: root
-          AWS_SECRET_ACCESS_KEY: password
+          AWS_ACCESS_KEY_ID: MINIO_ACCESS_KEY
+          AWS_SECRET_ACCESS_KEY: MINIO_SECRET_KEY
           MINIO_ENDPOINT: http://127.0.0.1:9000/
           AWS_BUCKET: devbucket
         run: |
