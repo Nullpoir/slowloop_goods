@@ -17,3 +17,4 @@ jobs:
 
       - name: Run RuboCop
         run: bundle exec rubocop
+        working-directory: ./api
