@@ -1,8 +1,8 @@
 module Api
   module Admin
     class GoodsController < Api::Admin::ApplicationController
-      before_action :good, only: %i(show update destroy)
-     before_action :init_good, only: %i(create)
+      before_action :good, only: %i[show update destroy]
+      before_action :init_good, only: %i[create]
 
       def index
         render json: resources, each_serializer: GoodSerializer
@@ -21,7 +21,7 @@ module Api
         @good.update!(good_params)
         render_json
       end
-      
+
       def destroy
         @good.destroy!
         render_success_destroy
