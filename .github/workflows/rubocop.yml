@@ -1,0 +1,22 @@
+name: rubocop
+on: [pull_request]
+permissions:
+  contents: read
+  pull-requests: read
+jobs:
+  rubocop:
+    name: runner / rubocop
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.1.2
+      - name: rubocop
+        uses: reviewdog/action-rubocop@v2
+        with:
+          rubocop_version: api/gemfile
+          rubocop_flags: --config api/.rubocop.yml
+          rubocop_extensions: rubocop-i18n:gemfile rubocop-performance:gemfile rubocop-rails:gemfile rubocop-rake:gemfile rubocop-rspec:gemfile
+          reporter: github-pr-check
