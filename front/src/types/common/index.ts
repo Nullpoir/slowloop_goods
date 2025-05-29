@@ -4,10 +4,6 @@ export type AuthInfo = {
   uid: string
 }
 
-export type Good = {
-  name: string
-}
-
 export type PaginationMeta = {
   nextPage: boolean
   page: number
